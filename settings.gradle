@@ -16,3 +16,7 @@ dependencyResolutionManagement {
 rootProject.name = "ThanflixAndroid"
 include ':app'
 include ':domain'
+include ':data'
+include ':presentation'
+include ':movies'
+include ':series'
