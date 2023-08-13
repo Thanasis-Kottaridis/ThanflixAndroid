@@ -1,6 +1,11 @@
 plugins {
+    // Android Plugins
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+
+    // Hilt Plugins
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -21,23 +26,46 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
 dependencies {
+    // Enable Add Module/Libraries as dependency
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // Android Dependencies
+    def core = "1.10.1"
+    implementation "androidx.core:core-ktx:$core"
+
+    // Retrofit Dependencies
+    def retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
+    // OkHttp
+    def okhttp_version = '4.10.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Hilt - dependency
+    def hilt = "2.44"
+    implementation "com.google.dagger:hilt-android:$hilt"
+    kapt "com.google.dagger:hilt-compiler:$hilt"
 
     // Module Dependencies
     implementation project(':domain')
+
+    // Test Dependencies
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
 }
