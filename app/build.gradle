@@ -31,19 +31,79 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes {
+        release {
+            // disable debug
+            /**
+             *  SOS!!!! EMULATOR WILL CRASH IF YOU BUILD ON RELEASE MODE
+             * Because emulator is detected as Root Device!
+             */
+            debuggable false
+
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources true
+
+            // Includes the default ProGuard rules files that are packaged with
+            // the Android Gradle plugin. To learn more, go to the section about
+            // R8 configuration files.
+            proguardFiles
+
+            // In order to build a release mode we need to specify signing config
+//            signingConfig = signingConfigs.getByName("releaseConfig")
+
+            // Enable Firebase crashlytics on release mode
+//            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+
+            // Disable Firebase crashlytics on Debug mode
+//            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
+        }
+    }
+
+    // Specifies one flavor dimension.
+    flavorDimensions "version"
+
+    productFlavors {
+        dev {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            resValue "string", "app_name", "Thanflix"
+            dimension "version"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+
     buildFeatures {
+        // enable jetpack compose
         compose true
+        // enable auto generated BuildConfig file
+        buildConfig = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
     }
+
     packaging {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
@@ -81,6 +141,10 @@ dependencies {
     def hilt = "2.44"
     implementation "com.google.dagger:hilt-android:$hilt"
     kapt "com.google.dagger:hilt-compiler:$hilt"
+
+    // Timber
+    def timber_version = "4.7.1"
+    implementation "com.jakewharton.timber:timber:${timber_version}"
 
     // Module Dependencies
     implementation project(':domain')

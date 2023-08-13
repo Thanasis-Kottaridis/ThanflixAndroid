@@ -7,8 +7,6 @@ import gr.thanflix.domain.models.show.ShowDetails
 import gr.thanflix.domain.models.base.Result
 
 interface MoviesRepository {
-    // Account Endpoint
-    suspend fun getFavoriteMovies(): Result<PagedListResult<Show>?, BaseException>
 
     // Movies Endpoints
     suspend fun getNowPlayingMovies(page: Int): Result<PagedListResult<Show>?, BaseException>

@@ -21,16 +21,74 @@ android {
 
     buildTypes {
         release {
+            // disable debug
+            /**
+             *  SOS!!!! EMULATOR WILL CRASH IF YOU BUILD ON RELEASE MODE
+             * Because emulator is detected as Root Device!
+             */
+            debuggable false
+
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources false
+
+            // Includes the default ProGuard rules files that are packaged with
+            // the Android Gradle plugin. To learn more, go to the section about
+            // R8 configuration files.
+            proguardFiles
+
+            // In order to build a release mode we need to specify signing config
+//            signingConfig = signingConfigs.getByName("releaseConfig")
+
+            // Enable Firebase crashlytics on release mode
+//            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
+        }
+        debug {
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            shrinkResources false
+
+            // Disable Firebase crashlytics on Debug mode
+//            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
         }
     }
+
+    // Specifies one flavor dimension.
+    flavorDimensions "version"
+
+    productFlavors {
+        dev {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            buildConfigField "String", 'BASE_URL', '"https://api.themoviedb.org/3"'
+            buildConfigField "String", 'MEDIA_BASE_URL', '"https://image.tmdb.org/t/p/"'
+            buildConfigField "String", 'API_KEY', '"40bcc56bcbc19c6715ac1eec3580d78e"'
+            buildConfigField "String", 'API_ACCESS_TOKEN', '"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MGJjYzU2YmNiYzE5YzY3MTVhYzFlZWMzNTgwZDc4ZSIsInN1YiI6IjY0YTAzY2ZjOGMwYTQ4MDBjNzYzZDRiMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6BM8aYSJ_L4CMAO-8zKlgfViqA4eWMYkilTY2FnRMjg"'
+            buildConfigField "String", 'ACCOUNT_ID', '"20091904"'
+
+            resValue "string", "app_name", "Thanflix"
+            dimension "version"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    buildFeatures {
+        // enable auto generated BuildConfig file
+        buildConfig = true
     }
 }
 
@@ -46,6 +104,10 @@ dependencies {
     def hilt = "2.44"
     implementation "com.google.dagger:hilt-android:$hilt"
     kapt "com.google.dagger:hilt-compiler:$hilt"
+
+    // Timber
+    def timber_version = "4.7.1"
+    implementation "com.jakewharton.timber:timber:${timber_version}"
 
     // Test Dependencies
     testImplementation 'junit:junit:4.13.2'
