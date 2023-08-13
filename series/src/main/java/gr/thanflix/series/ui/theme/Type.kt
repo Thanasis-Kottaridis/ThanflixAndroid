@@ -1,4 +1,4 @@
-package gr.thanflix.ui.theme
+package gr.thanflix.series.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

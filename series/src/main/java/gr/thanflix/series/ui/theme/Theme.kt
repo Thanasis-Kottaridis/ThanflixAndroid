@@ -1,4 +1,4 @@
-package gr.thanflix.ui.theme
+package gr.thanflix.series.ui.theme
 
 import android.app.Activity
 import android.os.Build

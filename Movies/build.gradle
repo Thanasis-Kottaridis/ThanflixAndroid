@@ -90,6 +90,18 @@ dependencies {
     // Enable Add Module/Libraries as dependency
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    def app_compat = "1.6.1"
+    implementation "androidx.appcompat:appcompat:$app_compat"
+
+    def material = "1.9.0"
+    implementation "com.google.android.material:material:$material"
+
+    def constraint_layout = "2.1.4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+
+    def androidx_ui = "1.0.0-alpha07"
+    implementation "androidx.ui:ui-tooling:1.0.0-alpha07"
+
     // Android Dependencies
     def core = "1.10.1"
     implementation "androidx.core:core-ktx:$core"
@@ -100,7 +112,7 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt"
 
     // Timber
-    def timber_version = "4.7.1"
+    def timber_version = "5.0.1"
     implementation "com.jakewharton.timber:timber:${timber_version}"
 
     // Module Dependencies
