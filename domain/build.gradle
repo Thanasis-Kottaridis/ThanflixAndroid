@@ -66,7 +66,7 @@ android {
             // If you are using only one dimension, this property is optional,
             // and the plugin automatically assigns all the module's flavors to
             // that dimension.
-            buildConfigField "String", 'BASE_URL', '"https://api.themoviedb.org/3"'
+            buildConfigField "String", 'BASE_URL', '"https://api.themoviedb.org/3/"'
             buildConfigField "String", 'MEDIA_BASE_URL', '"https://image.tmdb.org/t/p/"'
             buildConfigField "String", 'API_KEY', '"40bcc56bcbc19c6715ac1eec3580d78e"'
             buildConfigField "String", 'API_ACCESS_TOKEN', '"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MGJjYzU2YmNiYzE5YzY3MTVhYzFlZWMzNTgwZDc4ZSIsInN1YiI6IjY0YTAzY2ZjOGMwYTQ4MDBjNzYzZDRiMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6BM8aYSJ_L4CMAO-8zKlgfViqA4eWMYkilTY2FnRMjg"'

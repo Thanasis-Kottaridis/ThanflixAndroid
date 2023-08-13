@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dagger.hilt.android.AndroidEntryPoint
 import gr.thanflix.data.utils.DataTester
 import gr.thanflix.domain.utils.ModuleTester
 import gr.thanflix.movies.TestMovies
@@ -25,9 +27,16 @@ import gr.thanflix.presentation.utils.PresentationTester
 import gr.thanflix.series.util.SeriesTester
 import gr.thanflix.ui.theme.ThanflixAndroidTheme
 
+@AndroidEntryPoint // hilt needs at least one activity annotated with android entry point
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: TestViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.fetchPopularMovies()
+
         setContent {
             ThanflixAndroidTheme {
                 // A surface container using the 'background' color from the theme
