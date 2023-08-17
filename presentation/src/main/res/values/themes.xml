@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <style name="Theme.ThanflixAndroid" parent="android:Theme.Material.Light">-->
+
+<!--        <item name="android:colorPrimary">@color/brand_primary</item>-->
+<!--        <item name="android:statusBarColor">@color/background_default_primary</item>-->
+<!--        <item name="android:navigationBarColor">@color/background_default_primary</item>-->
+
+<!--    </style>-->
+
+    <style name="Theme.ThanflixAndroid" parent="Theme.AppCompat.DayNight">
+
+        <item name="android:colorPrimary">@color/brand_primary</item>
+        <item name="android:statusBarColor">@color/background_default_primary</item>
+        <item name="android:navigationBarColor">@color/background_default_primary</item>
+
+    </style>
+</resources>
