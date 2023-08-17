@@ -94,6 +94,14 @@ dependencies {
     def core = "1.10.1"
     implementation "androidx.core:core-ktx:$core"
 
+    def app_compat = "1.6.1"
+    implementation "androidx.appcompat:appcompat:$app_compat"
+
+    def navigation = "2.7.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
+    implementation "androidx.navigation:navigation-runtime-ktx:$navigation"
+
     // Hilt - dependency
     def hilt = "2.44"
     implementation "com.google.dagger:hilt-android:$hilt"

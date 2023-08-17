@@ -94,8 +94,6 @@ android {
     }
 
     buildFeatures {
-        // enable jetpack compose
-        compose true
         // enable auto generated BuildConfig file
         buildConfig = true
     }
@@ -123,19 +121,25 @@ dependencies {
     def lifecycle_runtime = "2.6.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime"
 
-    def activity_compose = "1.7.2"
-    implementation "androidx.activity:activity-compose:$activity_compose"
+    def app_compat = "1.6.1"
+    implementation "androidx.appcompat:appcompat:$app_compat"
+
+    def material = "1.9.0"
+    implementation "com.google.android.material:material:$material"
+
+    def constraint_layout = "2.1.4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+
+    def androidx_ui = "1.0.0-alpha07"
+    implementation "androidx.ui:ui-tooling:$androidx_ui"
+
+    def navigation = "2.7.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
 
     // Compose Dependencies
-    def compose = "1.5.0"
-    implementation "androidx.compose.ui:ui:$compose"
-    implementation "androidx.compose.ui:ui-graphics:$compose"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose"
-
-    def compose_material = "1.1.1"
-    implementation "androidx.compose.material3:material3:$compose_material"
-
-    implementation platform('androidx.compose:compose-bom:2023.03.00')
+    // def activity_compose = "1.7.2"
+    // implementation "androidx.activity:activity-compose:$activity_compose"
 
     // Hilt - dependency
     def hilt = "2.44"
