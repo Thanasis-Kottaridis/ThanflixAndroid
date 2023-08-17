@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movies_nav_graph"
+    app:startDestination="@id/moviesLandingFragment">
+
+    <fragment
+        android:id="@+id/moviesLandingFragment"
+        android:name="gr.thanflix.movies.ui.landing.MoviesLandingFragment"
+        android:label="fragment_movies_landing"
+        tools:layout="@layout/fragment_movies_landing" />
+    <fragment
+        android:id="@+id/moviesDetailsFragment"
+        android:name="gr.thanflix.movies.ui.details.MoviesDetailsFragment"
+        android:label="fragment_movies_details"
+        tools:layout="@layout/fragment_movies_details" />
+</navigation>
