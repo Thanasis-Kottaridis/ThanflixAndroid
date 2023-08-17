@@ -24,7 +24,7 @@ import timber.log.Timber
  * https://developer.android.com/training/dependency-injection/hilt-android#component-lifetimes
  */
 @HiltAndroidApp
-class BaseApplication : Application() {
+class BaseApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
