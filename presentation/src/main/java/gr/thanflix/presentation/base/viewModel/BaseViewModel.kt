@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 abstract class BaseViewModel<State: BaseState, Event> (
     private val context: Context,
     private val baseErrorDispatcher: BaseErrorDispatcher
-
 ): ViewModel(),
     BaseActionDispatcher,
     BaseErrorHandler {

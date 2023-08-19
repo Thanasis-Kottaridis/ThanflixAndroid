@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import gr.thanflix.R
 import gr.thanflix.coordinator.MainAppCoordinator
 import gr.thanflix.databinding.ActivityMainBinding
+import gr.thanflix.presentation.base.navigation.Coordinator
 import gr.thanflix.presentation.base.ui.BottomNavBarHandler
 import gr.thanflix.presentation.base.ui.BottomNavBarItem
 import gr.thanflix.presentation.utils.helpers.viewBinding
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity(), BottomNavBarHandler {
      * Inject and initialize MainAppCoordinator.
      */
     @Inject
-    lateinit var mainAppCoordinator: MainAppCoordinator
+    lateinit var mainAppCoordinator: Coordinator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

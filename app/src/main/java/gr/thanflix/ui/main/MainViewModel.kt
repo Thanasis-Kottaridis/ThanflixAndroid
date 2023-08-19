@@ -31,13 +31,6 @@ class MainViewModel @Inject constructor(
         commonInit()
     }
 
-    override fun commonInit() {
-        Timber.d("Movies .......... \n" +
-                ".......... \n" +
-                ".......... \n" +
-                "Common Init Called")
-    }
-
     override fun onTriggerEvent(event: MainEvents) {
         when(event) {
             is MainEvents.SelectMoviesTab -> actionHandler?.handleAction(GoToMoviesTab())

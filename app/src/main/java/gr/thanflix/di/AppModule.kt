@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import gr.thanflix.base.BaseErrorDispatcherImpl
 import gr.thanflix.coordinator.MainAppCoordinator
 import gr.thanflix.presentation.base.navigation.BaseActionHandler
+import gr.thanflix.presentation.base.navigation.Coordinator
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import javax.inject.Singleton
 
@@ -18,12 +19,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMainAppCoordinator(): MainAppCoordinator = MainAppCoordinator()
+    fun provideMainAppCoordinator(
+        coordinator: MainAppCoordinator
+    ): Coordinator = MainAppCoordinator()
 
     @Provides
     @Singleton
-    internal fun provideActionHandler(
-        mainAppCoordinator: MainAppCoordinator
+    fun provideActionHandler(
+        mainAppCoordinator: Coordinator
     ): BaseActionHandler = mainAppCoordinator
 
     @Provides

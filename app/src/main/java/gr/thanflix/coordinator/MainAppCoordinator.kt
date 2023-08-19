@@ -7,11 +7,12 @@ import gr.thanflix.presentation.base.navigation.Coordinator
 import gr.thanflix.presentation.base.navigation.PopToRootAction
 import gr.thanflix.series.coordinator.SeriesAction
 import gr.thanflix.series.coordinator.SeriesCoordinator
+import javax.inject.Inject
 
 class GoToMoviesTab: Action
 class GoToSeriesTab: Action
 
-class MainAppCoordinator: Coordinator {
+class MainAppCoordinator @Inject constructor(): Coordinator {
 
     override val graphId: Int = R.id.main_nav_graph
 
@@ -44,3 +45,4 @@ class MainAppCoordinator: Coordinator {
         }
     }
 }
+

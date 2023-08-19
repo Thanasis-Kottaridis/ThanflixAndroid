@@ -15,4 +15,5 @@
         android:name="gr.thanflix.series.ui.details.SeriesDetailsFragment"
         android:label="fragment_series_details"
         tools:layout="@layout/fragment_series_details" />
+    <include app:graph="@navigation/test_nav_graph" />
 </navigation>
