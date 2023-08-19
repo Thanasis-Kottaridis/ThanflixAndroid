@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_movies"
+        android:id="@+id/movies_tab"
         android:icon="@drawable/ic_movies_selected"
         android:title="Movies" />
     <item
-        android:id="@+id/action_series"
+        android:id="@+id/series_tab"
         android:icon="@drawable/ic_series_selected"
         android:title="Series" />
 </menu>

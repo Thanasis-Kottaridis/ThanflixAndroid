@@ -30,5 +30,4 @@ class MoviesDetailsFragment : BaseFragment(R.layout.fragment_movies_details) {
     override fun populateData() {
         TODO("Not yet implemented")
     }
-
 }

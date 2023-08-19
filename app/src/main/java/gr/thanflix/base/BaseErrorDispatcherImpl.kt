@@ -7,6 +7,7 @@ import gr.thanflix.domain.models.base.FeedbackMessageType
 import gr.thanflix.presentation.R
 import gr.thanflix.presentation.base.navigation.Action
 import gr.thanflix.presentation.base.navigation.BaseActionHandler
+import gr.thanflix.presentation.base.navigation.PresentFeedbackAction
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import gr.thanflix.presentation.base.viewModel.HandleErrorsConfig
 import timber.log.Timber
@@ -45,7 +46,7 @@ class BaseErrorDispatcherImpl(
 
             // Custom handling
             config.handleInternalServerError?.invoke() ?: run {
-                val action = Action.PresentFeedbackAction(
+                val action = PresentFeedbackAction(
                     feedbackMessage = FeedbackMessage(genericErrorMessage, FeedbackMessageType.Error)
                 )
                 actionHandler?.handleAction(action)
@@ -57,7 +58,7 @@ class BaseErrorDispatcherImpl(
 
             // Custom handling
             config.defaultHandling?.invoke() ?: run {
-                val action = Action.PresentFeedbackAction(
+                val action = PresentFeedbackAction(
                     feedbackMessage = FeedbackMessage(genericErrorMessage, FeedbackMessageType.Error)
                 )
                 actionHandler?.handleAction(action)
@@ -77,7 +78,7 @@ class BaseErrorDispatcherImpl(
     ) {
         val defaultMessage = context.resources.getString(R.string.login_session_invalidated)
         // Show feedbackMessage
-        val action = Action.PresentFeedbackAction(
+        val action = PresentFeedbackAction(
             feedbackMessage = FeedbackMessage(
                 forReason ?: defaultMessage,
                 FeedbackMessageType.Error

@@ -9,15 +9,15 @@ import gr.thanflix.domain.models.base.FeedbackMessage
 // MARK: Navigation Actions
 /// # Action
 ///  All navigation actions must extend this in order to be handled from Actions Handlers.
-//interface Action {}
-sealed class Action {
-    object PopAction: Action()
-    class PopToDestination(@IdRes val destinationId: Int, val inclusive: Boolean = true): Action()
-    object PopToRootAction: Action()
-    object ShowLoaderAction: Action()
-    object HideLoaderAction: Action()
-    class PresentFeedbackAction(val feedbackMessage: FeedbackMessage) : Action()
-}
+interface Action {}
+
+object PopAction: Action
+class PopToDestination(@IdRes val destinationId: Int, val inclusive: Boolean = true): Action
+object PopToRootAction: Action
+class ClearGraphAction(val graphId: Int): Action
+object ShowLoaderAction: Action
+object HideLoaderAction: Action
+class PresentFeedbackAction(val feedbackMessage: FeedbackMessage) : Action
 
 interface BaseActionHandler {
     fun handleAction(action: Action)

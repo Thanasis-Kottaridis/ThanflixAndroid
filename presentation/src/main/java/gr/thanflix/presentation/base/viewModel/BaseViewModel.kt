@@ -20,7 +20,10 @@ abstract class BaseViewModel<State: BaseState, Event> (
     protected abstract var mState: MutableStateFlow<State>
     abstract val state: StateFlow<State>
 
-    abstract fun commonInit()
+    open fun commonInit() {
+
+    }
+
     abstract fun onTriggerEvent(event: Event)
 
     override fun handleErrors(
