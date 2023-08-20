@@ -7,7 +7,6 @@ import gr.thanflix.presentation.base.navigation.BaseActionHandler
 import gr.thanflix.presentation.base.navigation.PopAction
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import gr.thanflix.presentation.base.viewModel.BaseViewModel
-import gr.thanflix.series.coordinator.SeriesAction
 import gr.thanflix.series.ui.details.interactors.SeriesDetailsEvents
 import gr.thanflix.series.ui.details.interactors.SeriesDetailsState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,8 +32,6 @@ class SeriesDetailsViewModel @Inject constructor(
     override fun onTriggerEvent(event: SeriesDetailsEvents) {
         when(event) {
             is SeriesDetailsEvents.GoBack -> actionHandler?.handleAction(PopAction)
-            is SeriesDetailsEvents.GoToTest -> actionHandler?.
-            handleAction(SeriesAction.GoToTest)
         }
     }
 }

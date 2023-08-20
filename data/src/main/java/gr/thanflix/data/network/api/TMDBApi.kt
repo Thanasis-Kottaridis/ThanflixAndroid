@@ -2,6 +2,8 @@ package gr.thanflix.data.network.api
 
 import gr.thanflix.data.network.dto.movies.MovieDetailsDto
 import gr.thanflix.data.network.dto.movies.MovieDto
+import gr.thanflix.data.network.dto.series.SeriesDetailsDto
+import gr.thanflix.data.network.dto.series.SeriesDto
 import gr.thanflix.domain.models.base.PagedGenericResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -44,25 +46,25 @@ interface TMDBApi {
     @GET("tv/airing_today")
     suspend fun getAiringTodaySeries(
         @Query("page") page: Int
-    ): Response<PagedGenericResponse<MovieDto>>
+    ): Response<PagedGenericResponse<List<SeriesDto>>>
 
     @GET("tv/on_the_air")
     suspend fun getOnTheAirSeries(
         @Query("page") page: Int
-    ): Response<PagedGenericResponse<MovieDto>>
+    ): Response<PagedGenericResponse<List<SeriesDto>>>
 
     @GET("tv/top_rated")
     suspend fun getTopRatedSeries(
         @Query("page") page: Int
-    ): Response<PagedGenericResponse<MovieDto>>
+    ): Response<PagedGenericResponse<List<SeriesDto>>>
 
     @GET("tv/popular")
     suspend fun getPopularSeries(
         @Query("page") page: Int
-    ): Response<PagedGenericResponse<MovieDto>>
+    ): Response<PagedGenericResponse<List<SeriesDto>>>
 
     @GET("tv/{seriesId}")
     suspend fun getSeriesDetails(
         @Path("seriesId") seriesId: Int
-    ): Response<PagedGenericResponse<MovieDto>>
+    ): Response<SeriesDetailsDto>
 }

@@ -5,7 +5,7 @@ import gr.thanflix.domain.models.base.PagedListResult
 import gr.thanflix.domain.models.show.Show
 import gr.thanflix.domain.models.show.ShowDetails
 import gr.thanflix.domain.models.base.Result
-interface ShowsRepository {
+interface SeriesRepository {
     // Series Endpoints
     suspend fun getAiringTodaySeries(page: Int): Result<PagedListResult<Show>?, BaseException>
     suspend fun getOnTheAirSeries(page: Int): Result<PagedListResult<Show>?, BaseException>

@@ -2,7 +2,6 @@ package gr.thanflix.data.repository
 
 import gr.thanflix.data.network.api.TMDBApi
 import gr.thanflix.data.network.dto.movies.MovieDetailsDto
-import gr.thanflix.data.network.dto.movies.MovieDto
 import gr.thanflix.data.network.mappers.movies.MovieDetailsMapper
 import gr.thanflix.data.network.mappers.movies.MoviePagingMapper
 import gr.thanflix.data.utils.DataProvider

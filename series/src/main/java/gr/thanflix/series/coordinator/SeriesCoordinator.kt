@@ -9,8 +9,6 @@ import gr.thanflix.series.R
 sealed class SeriesAction: Action {
     object GoToSeriesLanding: SeriesAction()
     class GoToSeriesDetails(id: Int): SeriesAction()
-
-    object GoToTest: SeriesAction()
 }
 
 class SeriesCoordinator (
@@ -30,8 +28,6 @@ class SeriesCoordinator (
                 // TODO Pass arguments
                 navigate(R.id.seriesDetailsFragment)
             }
-            is SeriesAction.GoToTest -> navigate(R.id.test_nav_graph)
-            else ->  super.handleAction(action)
         }
     }
 }
