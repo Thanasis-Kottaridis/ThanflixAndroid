@@ -42,4 +42,12 @@ abstract class ComposeBaseFragment(
      * all views will be handled via composable.
      */
     override fun setupView() {}
+
+    /**
+     * Empty Implementation of setUpObservers
+     *
+     * Because no need to observe viewModel State
+     * it will be done in ComposableContent.
+     */
+    override fun setUpObservers() {}
 }

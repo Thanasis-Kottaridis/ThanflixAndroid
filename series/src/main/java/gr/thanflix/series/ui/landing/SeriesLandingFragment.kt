@@ -15,21 +15,16 @@ import gr.thanflix.presentation.utils.helpers.viewBinding
 import gr.thanflix.series.R
 import gr.thanflix.series.databinding.FragmentSeriesLandingBinding
 import gr.thanflix.series.ui.landing.components.SeriesLandingScreen
+import gr.thanflix.series.ui.landing.interactors.SeriesLandingEvents
 
 @AndroidEntryPoint
 class SeriesLandingFragment : ComposeBaseFragment(R.layout.fragment_series_landing) {
 
-    private val binding by viewBinding(FragmentSeriesLandingBinding::bind)
     private val viewModel: SeriesLandingViewModel by viewModels()
 
-    override fun setUpObservers() {
-//        TODO("Not yet implemented")
-    }
-
     override fun populateData() {
-//        TODO("Not yet implemented")
+        viewModel.onTriggerEvent(SeriesLandingEvents.FetchData)
     }
-
 
     /**
      * Composable Content

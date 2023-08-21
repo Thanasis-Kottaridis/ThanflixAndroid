@@ -4,8 +4,6 @@ import gr.thanflix.domain.models.base.SectionModel
 import gr.thanflix.domain.models.show.Show
 import gr.thanflix.presentation.base.viewModel.BaseState
 import gr.thanflix.presentation.R
-import kotlinx.coroutines.flow.MutableStateFlow
-
 
 data class SeriesLandingState(
     override val isLoading: Boolean = false,

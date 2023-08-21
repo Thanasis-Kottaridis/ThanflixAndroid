@@ -2,6 +2,7 @@ package gr.thanflix.series.ui.landing
 
 
 import android.content.Context
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -14,6 +15,7 @@ import gr.thanflix.presentation.base.viewModel.BaseViewModel
 import gr.thanflix.series.coordinator.SeriesAction
 import gr.thanflix.series.ui.landing.interactors.SeriesLandingEvents
 import gr.thanflix.series.ui.landing.interactors.SeriesLandingState
+import gr.thanflix.series.util.Extras
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -31,9 +33,10 @@ class SeriesLandingViewModel @Inject constructor(
     override var actionHandler: BaseActionHandler?,
     private val seriesRepository: SeriesRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
-): BaseViewModel<SeriesLandingState, SeriesLandingEvents>(context, baseErrorDispatcher){
+) : BaseViewModel<SeriesLandingState, SeriesLandingEvents>(context, baseErrorDispatcher) {
 
-    override var mState: MutableStateFlow<SeriesLandingState> = MutableStateFlow(SeriesLandingState())
+    override var mState: MutableStateFlow<SeriesLandingState> =
+        MutableStateFlow(SeriesLandingState())
     override val state: StateFlow<SeriesLandingState>
         get() = mState.asStateFlow()
 
@@ -42,10 +45,14 @@ class SeriesLandingViewModel @Inject constructor(
     }
 
     override fun onTriggerEvent(event: SeriesLandingEvents) {
-        when(event) {
+        when (event) {
             is SeriesLandingEvents.FetchData -> fetchAllSeries()
-           is SeriesLandingEvents.SelectSeries -> actionHandler?.
-           handleAction(SeriesAction.GoToSeriesDetails(id = event.id))
+            is SeriesLandingEvents.SelectSeries -> actionHandler?.handleAction(
+                SeriesAction.GoToSeriesDetails(
+                    id = event.id
+                )
+            )
+
         }
     }
 
@@ -67,8 +74,9 @@ class SeriesLandingViewModel @Inject constructor(
             mState.tryEmit(mState.value.copy(isLoading = false))
         }
     }
+
     private suspend fun fetchTodaySeries(page: Int) {
-        when (val result = seriesRepository.getTopRatedSeries(page = 1)) {
+        when (val result = seriesRepository.getTopRatedSeries(page = page)) {
             is Result.Success -> {
                 mState.tryEmit(
                     mState.value.copy(
@@ -82,14 +90,16 @@ class SeriesLandingViewModel @Inject constructor(
             }
         }
     }
+
     private suspend fun fetchOnTheAirSeries(page: Int) {
-        when (val result = seriesRepository.getOnTheAirSeries(page = 1)) {
+        when (val result = seriesRepository.getOnTheAirSeries(page = page)) {
             is Result.Success -> {
                 mState.tryEmit(
                     mState.value.copy(
                         onTheAirSeries = result.body?.results ?: listOf()
                     )
-                ) }
+                )
+            }
 
             is Result.Failure -> {
                 handleErrors(result.errorBody)
@@ -98,7 +108,7 @@ class SeriesLandingViewModel @Inject constructor(
     }
 
     private suspend fun fetchPopularSeries(page: Int) {
-        when (val result = seriesRepository.getPopularSeries(page = 1)) {
+        when (val result = seriesRepository.getPopularSeries(page = page)) {
             is Result.Success -> {
                 mState.tryEmit(
                     mState.value.copy(
@@ -114,7 +124,7 @@ class SeriesLandingViewModel @Inject constructor(
     }
 
     private suspend fun fetchTopRatedSeries(page: Int) {
-        when (val result = seriesRepository.getTopRatedSeries(page = 1)) {
+        when (val result = seriesRepository.getTopRatedSeries(page = page)) {
             is Result.Success -> {
                 mState.tryEmit(
                     mState.value.copy(

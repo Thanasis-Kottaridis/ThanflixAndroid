@@ -1,14 +1,16 @@
 package gr.thanflix.series.coordinator
 
+import android.os.Bundle
 import androidx.navigation.NavController
 import gr.thanflix.presentation.base.navigation.Action
 import gr.thanflix.presentation.base.navigation.Coordinator
 import gr.thanflix.presentation.base.navigation.PopToRootAction
 import gr.thanflix.series.R
+import gr.thanflix.series.util.Extras
 
 sealed class SeriesAction: Action {
     object GoToSeriesLanding: SeriesAction()
-    class GoToSeriesDetails(id: Int): SeriesAction()
+    class GoToSeriesDetails(val id: Int): SeriesAction()
 }
 
 class SeriesCoordinator (
@@ -25,8 +27,10 @@ class SeriesCoordinator (
             is SeriesAction.GoToSeriesLanding -> navigate(R.id.seriesLandingFragment)
 
             is SeriesAction.GoToSeriesDetails -> {
-                // TODO Pass arguments
-                navigate(R.id.seriesDetailsFragment)
+                val args = Bundle()
+                args.putInt(Extras.ARG_SERIES_ID, action.id)
+
+                navigate(R.id.seriesDetailsFragment, args)
             }
         }
     }
