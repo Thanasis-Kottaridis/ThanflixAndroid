@@ -76,7 +76,7 @@ class BaseErrorDispatcherImpl(
         isHard: Boolean = false,
         forReason: String? = null
     ) {
-        val defaultMessage = context.resources.getString(R.string.login_session_invalidated)
+        val defaultMessage = context.resources.getString(R.string.LOGIN_SESSION_INVALIDATED)
         // Show feedbackMessage
         val action = PresentFeedbackAction(
             feedbackMessage = FeedbackMessage(

@@ -1,6 +1,44 @@
 <resources>
-    <string name="app_name">Thanflix</string>
-    <string name="title_series">Series</string>
-    <string name="title_movies">Movies</string>
-    <string name="login_session_invalidated">Oops! Your login session timed out…\nTry to login again.</string>
+
+    <!-- GENERIC ERROR MESSAGES -->
+    <string name="SOMETHING_WENT_WRONG_TRY_AGAIN">Somthing went wrong…\nPlease try again.</string>
+    <string name="LOGIN_SESSION_INVALIDATED">Oops! Your login session timed out…\nTry to login again.</string>
+    <string name="NETWORK_ERROR">Internet connection lost.\nThe application has no internet access.</string>
+    <string name="NETWORK_RESTORED">Connection has been restored.</string>
+
+    <!-- MOVIES LANDING -->
+    <string name="MOVIES_LANDING_TITLE">Movies</string>
+    <string name="MOVIES_LANDING_NOW_PLAYING">Now Playing</string>
+    <string name="MOVIES_LANDING_MOST_POPULAR">Most Popular</string>
+    <string name="MOVIES_LANDING_TOP_RATED">Top Rated</string>
+    <string name="MOVIES_LANDING_UPCOMING">Upcoming</string>
+
+    <!-- SERIES LANDING -->
+    <string name="SERIES_LANDING_TITLE">Series</string>
+    <string name="SERIES_LANDING_TODAY">Airing Today</string>
+    <string name="SERIES_LANDING_ON_THE_AIR">On The Air</string>
+    <string name="SERIES_LANDING_TOP_RATED">Top Rated</string>
+    <string name="SERIES_LANDING_POPULAR">Popular</string>
+
+    <!-- SHOW DETAILS INFO -->
+    <string name="RELEASE_DATE_INFO">RELEASED</string>
+    <string name="WATCHED_BUTTON_TITLE">Watched</string>
+    <string name="VOTE_AVERAGE_TITLE">Vote\nAverage</string>
+    <string name="VOTE_COUNT_TITLE">Vote\nCount</string>
+    <string name="VOTE_POPULARITY_TITLE">Popularity</string>
+    <string name="PRODUCTION_COMPANIES_TITLE">Companies</string>
+    <string name="SEASONS_TITLE">Seasons</string>
+
+    <!-- SHOW DETAILS OVERVIEW -->
+    <string name="OVERVIEW_TITLE">Overview</string>
+    <string name="READ_MORE_TITLE">Read More</string>
+    <string name="OVERVIEW_RUNTIME">RUNTIME</string>
+    <string name="OVERVIEW_COUNTRIES">COUNTRIES</string>
+    <string name="OVERVIEW_LANGUAGE">LANGUAGE</string>
+    <string name="OVERVIEW_GENERS">GENERS</string>
+    <string name="OVERVIEW_BUDGET">BUDGET</string>
+    <string name="OVERVIEW_REVENUE">REVENUE</string>
+    <string name="OVERVIEW_SYNOPSIS">SYNOPSIS</string>
+    <string name="OVERVIEW_SESONS_AND_EPISODES">SEASONS AND EPISODES</string>
+
 </resources>
