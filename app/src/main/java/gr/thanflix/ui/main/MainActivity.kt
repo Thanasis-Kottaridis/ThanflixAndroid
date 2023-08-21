@@ -8,11 +8,10 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import gr.thanflix.R
-import gr.thanflix.coordinator.MainAppCoordinator
 import gr.thanflix.databinding.ActivityMainBinding
 import gr.thanflix.presentation.base.navigation.Coordinator
-import gr.thanflix.presentation.base.ui.BottomNavBarHandler
-import gr.thanflix.presentation.base.ui.BottomNavBarItem
+import gr.thanflix.presentation.utils.helpers.BottomNavBarHandler
+import gr.thanflix.presentation.utils.helpers.BottomNavBarItem
 import gr.thanflix.presentation.utils.helpers.viewBinding
 import gr.thanflix.ui.main.interactors.MainEvents
 import javax.inject.Inject

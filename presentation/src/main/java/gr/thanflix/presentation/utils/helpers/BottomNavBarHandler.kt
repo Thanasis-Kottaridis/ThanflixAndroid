@@ -1,4 +1,4 @@
-package gr.thanflix.presentation.base.ui
+package gr.thanflix.presentation.utils.helpers
 
 import com.google.android.material.navigation.NavigationBarView
 

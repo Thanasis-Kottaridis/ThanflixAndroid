@@ -3,10 +3,13 @@ package gr.thanflix.presentation.base.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import gr.thanflix.presentation.utils.helpers.BottomNavBarHandler
+import gr.thanflix.presentation.utils.helpers.BottomNavBarItem
 
 abstract class BaseFragment(
     layoutResId: Int
 ) : Fragment(layoutResId) {
+
     /**
      * Variables to override in order to change the load behavior or time
      */

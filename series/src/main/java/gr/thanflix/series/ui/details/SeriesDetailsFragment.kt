@@ -17,10 +17,6 @@ class SeriesDetailsFragment : BaseFragment(R.layout.fragment_series_details) {
         binding.goBackButton.setOnClickListener {
             viewModel.onTriggerEvent(SeriesDetailsEvents.GoBack)
         }
-
-        binding.goToTestButton.setOnClickListener {
-            viewModel.onTriggerEvent(SeriesDetailsEvents.GoToTest)
-        }
     }
 
     override fun setUpObservers() {

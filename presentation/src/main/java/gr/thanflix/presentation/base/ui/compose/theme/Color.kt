@@ -1,4 +1,4 @@
-package gr.thanflix.series.util.helpers.theme
+package gr.thanflix.presentation.base.ui.compose.theme
 
 import androidx.compose.ui.graphics.Color
 

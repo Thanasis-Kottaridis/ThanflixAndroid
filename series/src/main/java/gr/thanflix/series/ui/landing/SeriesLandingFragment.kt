@@ -1,31 +1,23 @@
 package gr.thanflix.series.ui.landing
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import gr.thanflix.presentation.base.ui.BaseFragment
+import gr.thanflix.presentation.base.ui.compose.ComposeBaseFragment
+import gr.thanflix.presentation.base.ui.compose.theme.ThanflixAndroidTheme
 import gr.thanflix.presentation.utils.helpers.viewBinding
 import gr.thanflix.series.R
-import gr.thanflix.series.databinding.FragmentSeriesDetailsBinding
 import gr.thanflix.series.databinding.FragmentSeriesLandingBinding
-import gr.thanflix.series.ui.details.SeriesDetailsViewModel
-import gr.thanflix.series.ui.landing.interactors.SeriesLandingEvents
 
 @AndroidEntryPoint
-class SeriesLandingFragment : BaseFragment(R.layout.fragment_series_landing) {
+class SeriesLandingFragment : ComposeBaseFragment(R.layout.fragment_series_landing) {
 
     private val binding by viewBinding(FragmentSeriesLandingBinding::bind)
     private val viewModel: SeriesLandingViewModel by viewModels()
-    override fun setupView() {
-        binding.detailsButton.setOnClickListener {
-            viewModel.onTriggerEvent(SeriesLandingEvents.SelectSeries(id = -1))
-        }
-    }
 
     override fun setUpObservers() {
 //        TODO("Not yet implemented")
@@ -33,5 +25,18 @@ class SeriesLandingFragment : BaseFragment(R.layout.fragment_series_landing) {
 
     override fun populateData() {
 //        TODO("Not yet implemented")
+    }
+
+
+    /**
+     * Composable Content
+     */
+    @Composable
+    override fun ComposableContent() {
+        Column {
+            Text(text = "Hello, Compose!")
+            Text(text = "Hello, Compose!")
+            Text(text = "Hello, Compose!")
+        }
     }
 }

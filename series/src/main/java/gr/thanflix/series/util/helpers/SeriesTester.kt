@@ -1,4 +1,4 @@
-package gr.thanflix.series.util
+package gr.thanflix.series.util.helpers
 
 import gr.thanflix.domain.utils.ModuleTester
 
