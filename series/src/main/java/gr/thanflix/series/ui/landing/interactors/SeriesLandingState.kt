@@ -7,7 +7,7 @@ import gr.thanflix.presentation.R
 
 data class SeriesLandingState(
     override val isLoading: Boolean = false,
-    override val hasInternet: Boolean = true,
+    override val isOnline: Boolean = true,
     val todaySeries: List<Show> = emptyList(),
     val onTheAirSeries: List<Show> = emptyList(),
     val popularSeries: List<Show> = emptyList(),

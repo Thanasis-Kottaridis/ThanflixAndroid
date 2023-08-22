@@ -7,6 +7,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import gr.thanflix.domain.di.IoDispatcher
 import gr.thanflix.domain.models.base.Result
 import gr.thanflix.domain.repository.MoviesRepository
+import gr.thanflix.movies.coordinator.MoviesAction
 import gr.thanflix.movies.ui.landing.interactors.MoviesLandingEvents
 import gr.thanflix.movies.ui.landing.interactors.MoviesLandingState
 import gr.thanflix.presentation.base.navigation.BaseActionHandler
@@ -43,7 +44,11 @@ class MoviesLandingViewModel @Inject constructor(
     override fun onTriggerEvent(event: MoviesLandingEvents) {
         when (event) {
             is MoviesLandingEvents.FetchData -> fetchAllData()
-            is MoviesLandingEvents.SelectMovie -> {}
+            is MoviesLandingEvents.SelectMovie -> actionHandler?.handleAction(
+                MoviesAction.GoToMovieDetails(
+                    id = event.id
+                )
+            )
         }
     }
 

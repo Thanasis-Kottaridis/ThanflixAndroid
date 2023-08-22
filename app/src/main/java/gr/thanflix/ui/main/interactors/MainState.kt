@@ -4,5 +4,5 @@ import gr.thanflix.presentation.base.viewModel.BaseState
 
 data class MainState(
     override val isLoading: Boolean = false,
-    override var hasInternet: Boolean = true
+    override var isOnline: Boolean = true
 ): BaseState()

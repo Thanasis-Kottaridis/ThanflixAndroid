@@ -22,11 +22,14 @@ abstract class BaseFragment(
     /**
      * Set to true to show the bottom nav bar in a fragment e.g. movies landing fragment
      */
-    protected open var hideNavigationBar = false
+    protected open var showNavigationBar = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // handle bottom nav visibility
+        if (activity is BottomNavBarHandler)
+            (activity as BottomNavBarHandler).setBottomNavBarVisibility(showNavigationBar)
 
         initArgs()
         setupView()

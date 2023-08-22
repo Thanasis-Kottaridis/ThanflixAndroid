@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_movies_landing" />
     <fragment
         android:id="@+id/moviesDetailsFragment"
-        android:name="gr.thanflix.movies.ui.details.MoviesDetailsFragment"
+        android:name="gr.thanflix.movies.ui.details.MovieDetailsFragment"
         android:label="fragment_movies_details"
         tools:layout="@layout/fragment_movies_details" />
 </navigation>

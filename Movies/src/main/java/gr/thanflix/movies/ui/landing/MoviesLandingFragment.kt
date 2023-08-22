@@ -21,6 +21,11 @@ class MoviesLandingFragment : BaseFragment(R.layout.fragment_movies_landing) {
 
     private lateinit var moviesParentAdapter: MoviesSectionAdapter
 
+    /**
+     * Set navbar visibility
+     */
+    override var showNavigationBar: Boolean = true
+
     override fun setupView() {
         binding.moviesParentRecyclerView.layoutManager = LinearLayoutManager(
             requireContext(),

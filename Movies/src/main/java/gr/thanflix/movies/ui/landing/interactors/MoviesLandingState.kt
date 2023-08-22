@@ -7,7 +7,7 @@ import gr.thanflix.presentation.base.viewModel.BaseState
 
 data class MoviesLandingState(
     override val isLoading: Boolean = false,
-    override var hasInternet: Boolean = true,
+    override var isOnline: Boolean = true,
     val nowPlayingMovies: List<Show> = listOf(),
     val popularMovies: List<Show> = listOf(),
     val topRatedMovies: List<Show> = listOf(),
