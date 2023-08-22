@@ -27,7 +27,7 @@ data class MoviesLandingState(
 
             if (popularMovies.isNotEmpty()) {
                 val section = SectionModel(
-                    model =  R.string.MOVIES_LANDING_NOW_PLAYING,
+                    model =  R.string.MOVIES_LANDING_MOST_POPULAR,
                     items = popularMovies
                 )
                 sections.add(section)

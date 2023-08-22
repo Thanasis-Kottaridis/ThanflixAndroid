@@ -1,7 +1,10 @@
 package gr.thanflix.coordinator
 
+import android.graphics.Movie
 import androidx.navigation.NavController
 import gr.thanflix.R
+import gr.thanflix.movies.coordinator.MoviesAction
+import gr.thanflix.movies.coordinator.MoviesCoordinator
 import gr.thanflix.presentation.base.navigation.Action
 import gr.thanflix.presentation.base.navigation.Coordinator
 import gr.thanflix.presentation.base.navigation.PopToRootAction
@@ -9,10 +12,10 @@ import gr.thanflix.series.coordinator.SeriesAction
 import gr.thanflix.series.coordinator.SeriesCoordinator
 import javax.inject.Inject
 
-class GoToMoviesTab: Action
-class GoToSeriesTab: Action
+class GoToMoviesTab : Action
+class GoToSeriesTab : Action
 
-class MainAppCoordinator @Inject constructor(): Coordinator {
+class MainAppCoordinator @Inject constructor() : Coordinator {
 
     override val graphId: Int = R.id.main_nav_graph
 
@@ -23,12 +26,13 @@ class MainAppCoordinator @Inject constructor(): Coordinator {
     }
 
     override fun handleAction(action: Action) {
-        when(action) {
+        when (action) {
             is GoToMoviesTab -> {
                 // reset back stack
                 handleAction(PopToRootAction)
                 // select tab
-                navigate(gr.thanflix.movies.R.id.movies_nav_graph)
+                val coordinator = MoviesCoordinator(navController)
+                coordinator.start()
             }
             is GoToSeriesTab -> {
                 // reset back stack
@@ -37,11 +41,15 @@ class MainAppCoordinator @Inject constructor(): Coordinator {
                 val coordinator = SeriesCoordinator(navController)
                 coordinator.start()
             }
+            is MoviesAction -> {
+                val coordinator = MoviesCoordinator(navController)
+                coordinator.handleAction(action)
+            }
             is SeriesAction -> {
                 val coordinator = SeriesCoordinator(navController)
                 coordinator.handleAction(action)
             }
-            else ->  super.handleAction(action)
+            else -> super.handleAction(action)
         }
     }
 }

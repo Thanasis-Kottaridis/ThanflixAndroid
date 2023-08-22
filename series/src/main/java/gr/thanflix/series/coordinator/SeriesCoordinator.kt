@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import gr.thanflix.presentation.base.navigation.Action
 import gr.thanflix.presentation.base.navigation.Coordinator
-import gr.thanflix.presentation.base.navigation.PopToRootAction
 import gr.thanflix.series.R
 import gr.thanflix.series.util.Extras
 
@@ -19,7 +18,7 @@ class SeriesCoordinator (
     override val graphId: Int = R.id.series_nav_graph
 
     override fun start() {
-        navigate(R.id.series_nav_graph)
+        navigate(graphId)
     }
 
     override fun handleAction(action: Action) {
