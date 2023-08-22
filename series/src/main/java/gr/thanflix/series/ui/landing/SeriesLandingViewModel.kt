@@ -46,7 +46,7 @@ class SeriesLandingViewModel @Inject constructor(
 
     override fun onTriggerEvent(event: SeriesLandingEvents) {
         when (event) {
-            is SeriesLandingEvents.FetchData -> fetchAllSeries()
+            is SeriesLandingEvents.FetchData -> fetchAllData()
             is SeriesLandingEvents.SelectSeries -> actionHandler?.handleAction(
                 SeriesAction.GoToSeriesDetails(
                     id = event.id
@@ -56,7 +56,7 @@ class SeriesLandingViewModel @Inject constructor(
         }
     }
 
-    private fun fetchAllSeries() {
+    private fun fetchAllData() {
         viewModelScope.launch(dispatcher) {
             // Show loader
             mState.tryEmit(mState.value.copy(isLoading = true))

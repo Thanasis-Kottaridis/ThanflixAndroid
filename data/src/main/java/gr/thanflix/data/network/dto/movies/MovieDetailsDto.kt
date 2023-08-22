@@ -1,34 +1,39 @@
 package gr.thanflix.data.network.dto.movies
 
+import com.google.gson.annotations.SerializedName
 import gr.thanflix.data.network.dto.common.GenreDto
 import gr.thanflix.data.network.dto.common.ProductionCompanyDto
 import gr.thanflix.data.network.dto.common.ProductionCountryDto
 import gr.thanflix.data.network.dto.common.SpokenLanguageDto
 
 data class MovieDetailsDto(
-    val adult: Boolean? = null,
-    val backdropPath: String? = null,
-    val belongsToCollection: MovieCollectionDto? = null,
-    val budget: Int? = null,
-    val genres: List<GenreDto>? = null,
-    val homepage: String? = null,
-    val id: Int? = null,
-    val imdbID: String? = null,
-    val originalLanguage: String? = null,
-    val originalTitle: String? = null,
-    val overview: String? = null,
-    val popularity: Double? = null,
-    val posterPath: String? = null,
-    val productionCompanies: List<ProductionCompanyDto>? = null,
-    val productionCountries: List<ProductionCountryDto>? = null,
-    val releaseDate: String? = null,
-    val revenue: Int? = null,
-    val runtime: Int? = null,
-    val spokenLanguages: List<SpokenLanguageDto>? = null,
-    val status: String? = null,
-    val tagline: String? = null,
-    val title: String? = null,
-    val video: Boolean? = null,
-    val voteAverage: Double? = null,
-    val voteCount: Int? = null
+    @SerializedName("adult") val adult: Boolean? = null,
+    @SerializedName("backdrop_path") val backdropPath: String? = null,
+    @SerializedName("belongs_to_collection") val belongsToCollection: MovieCollectionDto? = null,
+    @SerializedName("budget") val budget: Int? = null,
+    @SerializedName("genres") val genres: List<GenreDto>? = null,
+    @SerializedName("homepage") val homepage: String? = null,
+    @SerializedName("id") val id: Int? = null,
+    @SerializedName("imdb_id") val imdbID: String? = null,
+    @SerializedName("original_language") val originalLanguage: String? = null,
+    @SerializedName("original_title") val originalTitle: String? = null,
+    @SerializedName("overview") val overview: String? = null,
+    @SerializedName("popularity") val popularity: Double? = null,
+    @SerializedName("poster_path") val posterPath: String? = null,
+    @SerializedName("production_companies") val productionCompanies: List<ProductionCompanyDto>? = null,
+    @SerializedName("production_countries") val productionCountries: List<ProductionCountryDto>? = null,
+    @SerializedName("release_date") val releaseDate: String? = null,
+    @SerializedName("revenue") val revenue: Int? = null,
+    @SerializedName("runtime") val runtime: Int? = null,
+    @SerializedName("spoken_languages") val spokenLanguages: List<SpokenLanguageDto>? = null,
+    @SerializedName("status") val status: String? = null,
+    @SerializedName("tagline") val tagline: String? = null,
+    @SerializedName("title") val title: String? = null,
+    @SerializedName("video") val video: Boolean? = null,
+    @SerializedName("vote_average") val voteAverage: Double? = null,
+    @SerializedName("vote_count") val voteCount: Int? = null
 )
+
+
+
+

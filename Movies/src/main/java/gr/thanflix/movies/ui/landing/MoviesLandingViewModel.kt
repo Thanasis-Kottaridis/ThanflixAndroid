@@ -13,6 +13,8 @@ import gr.thanflix.presentation.base.navigation.BaseActionHandler
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import gr.thanflix.presentation.base.viewModel.BaseViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,26 +42,90 @@ class MoviesLandingViewModel @Inject constructor(
 
     override fun onTriggerEvent(event: MoviesLandingEvents) {
         when (event) {
-            is MoviesLandingEvents.FetchData -> fetchPopularMovies()
+            is MoviesLandingEvents.FetchData -> fetchAllData()
+            is MoviesLandingEvents.SelectMovie -> {}
         }
     }
 
-    private fun fetchPopularMovies() {
+    private fun fetchAllData() {
         viewModelScope.launch(dispatcher) {
+            // Show loader
+            mState.tryEmit(mState.value.copy(isLoading = true))
 
-            when (val result = moviesRepository.getPopularMovies(page = 1)) {
-                is Result.Success -> {
-                    mState.tryEmit(
-                        mState.value.copy(
-                            popularMovies = result.body?.results ?: listOf()
-                        )
+            val requests = listOf(
+                async { fetchNowPlayingMovies(page = 1) },
+                async { fetchPopularMovies(page = 1) },
+                async { fetchTopRatedMovies(page = 1) },
+                async { fetchUpcomingMovies(page = 1) }
+            )
+
+            requests.awaitAll() // Wait for all requests to complete
+
+            // Hide loader
+            mState.tryEmit(mState.value.copy(isLoading = false))
+        }
+    }
+
+    private suspend fun fetchNowPlayingMovies(page: Int) {
+        when (val result = moviesRepository.getNowPlayingMovies(page = page)) {
+            is Result.Success -> {
+                mState.tryEmit(
+                    mState.value.copy(
+                        nowPlayingMovies = result.body?.results ?: listOf()
                     )
-                    Timber.d("Movies .......... \n.......... \n.......... \n ${result.body?.results})")
-                }
+                )
+            }
 
-                is Result.Failure -> {
-                    handleErrors(result.errorBody)
-                }
+            is Result.Failure -> {
+                handleErrors(result.errorBody)
+            }
+        }
+    }
+
+    private suspend fun fetchPopularMovies(page: Int) {
+        when (val result = moviesRepository.getPopularMovies(page = page)) {
+            is Result.Success -> {
+                mState.tryEmit(
+                    mState.value.copy(
+                        popularMovies = result.body?.results ?: listOf()
+                    )
+                )
+            }
+
+            is Result.Failure -> {
+                handleErrors(result.errorBody)
+            }
+        }
+    }
+
+    private suspend fun fetchTopRatedMovies(page: Int) {
+        when (val result = moviesRepository.getTopRatedMovies(page = page)) {
+            is Result.Success -> {
+                mState.tryEmit(
+                    mState.value.copy(
+                        topRatedMovies = result.body?.results ?: listOf()
+                    )
+                )
+            }
+
+            is Result.Failure -> {
+                handleErrors(result.errorBody)
+            }
+        }
+    }
+
+    private suspend fun fetchUpcomingMovies(page: Int) {
+        when (val result = moviesRepository.getUpcomingMovies(page = page)) {
+            is Result.Success -> {
+                mState.tryEmit(
+                    mState.value.copy(
+                        upcomingMovies = result.body?.results ?: listOf()
+                    )
+                )
+            }
+
+            is Result.Failure -> {
+                handleErrors(result.errorBody)
             }
         }
     }
