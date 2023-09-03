@@ -78,10 +78,8 @@ class MoviesLandingViewModel @Inject constructor(
 
             withContext(Dispatchers.Main) {
                 actionHandler?.handleAction(PresentFeedbackAction(
-                    FeedbackMessage("test message", FeedbackMessageType.Success),
-                    context = context
+                    FeedbackMessage("Data fetched from server!", FeedbackMessageType.Success)
                 ))
-
             }
         }
     }

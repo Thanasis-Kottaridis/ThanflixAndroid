@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <style name="Theme.ThanflixAndroid" parent="android:Theme.Material.Light">-->
 
-<!--        <item name="android:colorPrimary">@color/brand_primary</item>-->
-<!--        <item name="android:statusBarColor">@color/background_default_primary</item>-->
-<!--        <item name="android:navigationBarColor">@color/background_default_primary</item>-->
+    <style name="Theme.ThanflixAndroid" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!--  Brand color. -->
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorSecondary">@color/brand_secondary</item>
 
-<!--    </style>-->
-
-    <style name="Theme.ThanflixAndroid" parent="Theme.AppCompat.DayNight">
-
-        <item name="android:colorPrimary">@color/brand_primary</item>
-        <item name="android:statusBarColor">@color/background_default_primary</item>
         <item name="android:navigationBarColor">@color/background_default_primary</item>
 
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/background_default_primary</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/background_default_primary</item>
+        <item name="android:dialogTheme">@style/Thanflix.AppDialogTheme</item>
+        <item name="android:textColor">@color/tint_primary</item>
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
     </style>
 </resources>
