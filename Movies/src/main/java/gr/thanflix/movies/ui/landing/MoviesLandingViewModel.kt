@@ -75,12 +75,6 @@ class MoviesLandingViewModel @Inject constructor(
 
             // Hide loader
             mState.tryEmit(mState.value.copy(isLoading = false))
-
-            withContext(Dispatchers.Main) {
-                actionHandler?.handleAction(PresentFeedbackAction(
-                    FeedbackMessage("Data fetched from server!", FeedbackMessageType.Success)
-                ))
-            }
         }
     }
 

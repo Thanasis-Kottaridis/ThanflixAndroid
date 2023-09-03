@@ -31,6 +31,7 @@ class MainActivity : BaseActivity(), BottomNavBarHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setUpLoaderView(binding)
         // set up views
         setUpViews()
     }
@@ -85,8 +86,8 @@ class MainActivity : BaseActivity(), BottomNavBarHandler {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         mainAppCoordinator.stop()
     }
 }

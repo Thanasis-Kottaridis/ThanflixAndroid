@@ -6,6 +6,7 @@ import androidx.annotation.IdRes
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import gr.thanflix.domain.models.base.FeedbackMessage
+import gr.thanflix.presentation.base.ui.BaseActivity
 import gr.thanflix.presentation.components.FeedbackMessageView
 
 interface Coordinator : BaseActionHandler {
@@ -70,8 +71,8 @@ interface Coordinator : BaseActionHandler {
 
             is PopToRootAction -> navController?.popBackStack(graphId, true)
             is ClearGraphAction -> navController?.popBackStack(action.graphId, true)
-            is ShowLoaderAction -> {}
-            is HideLoaderAction -> {}
+            is ShowLoaderAction -> (context as? BaseActivity)?.showLoader()
+            is HideLoaderAction -> (context as? BaseActivity)?.hideLoader()
             is PresentFeedbackAction -> {
                 FeedbackMessageView.build(
                     type = action.feedbackMessage.type,

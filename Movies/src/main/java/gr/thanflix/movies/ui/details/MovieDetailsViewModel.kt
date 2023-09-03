@@ -14,6 +14,7 @@ import gr.thanflix.presentation.base.navigation.BaseActionHandler
 import gr.thanflix.presentation.base.navigation.PopAction
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import gr.thanflix.presentation.base.viewModel.BaseViewModel
+import gr.thanflix.presentation.utils.helpers.withDelay
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -33,6 +34,10 @@ class MovieDetailsViewModel @Inject constructor(
     override var mState: MutableStateFlow<MovieDetailsState> = MutableStateFlow(MovieDetailsState())
     override val state: StateFlow<MovieDetailsState>
         get() = mState.asStateFlow()
+
+    init {
+        commonInit()
+    }
 
     override fun onTriggerEvent(event: MovieDetailsEvents) {
         when(event) {
