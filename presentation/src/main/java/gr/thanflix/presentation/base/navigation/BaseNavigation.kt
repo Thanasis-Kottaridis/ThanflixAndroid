@@ -19,6 +19,7 @@ class ClearGraphAction(val graphId: Int): Action
 object ShowLoaderAction: Action
 object HideLoaderAction: Action
 class PresentFeedbackAction(val feedbackMessage: FeedbackMessage) : Action
+object GoToMainApp: Action
 
 interface BaseActionHandler {
     fun handleAction(action: Action)

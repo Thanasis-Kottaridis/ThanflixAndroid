@@ -1,6 +1,6 @@
 plugins {
     // Android Plugins
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 
     // Hilt Plugins
@@ -9,66 +9,25 @@ plugins {
 }
 
 android {
-    namespace 'gr.thanflix'
+    namespace 'gr.thanflix.onboarding'
     compileSdk 34
 
     defaultConfig {
-        applicationId "gr.thanflix"
         minSdk 26
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
         vectorDrawables {
             useSupportLibrary true
         }
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    buildTypes {
-        release {
-            // disable debug
-            /**
-             *  SOS!!!! EMULATOR WILL CRASH IF YOU BUILD ON RELEASE MODE
-             * Because emulator is detected as Root Device!
-             */
-            debuggable false
-
-            // Enables code shrinking, obfuscation, and optimization for only
-            // your project's release build type.
-            minifyEnabled true
-
-            // Enables resource shrinking, which is performed by the
-            // Android Gradle plugin.
-            shrinkResources true
-
-            // Includes the default ProGuard rules files that are packaged with
-            // the Android Gradle plugin. To learn more, go to the section about
-            // R8 configuration files.
-            proguardFiles
-
-            // In order to build a release mode we need to specify signing config
-//            signingConfig = signingConfigs.getByName("releaseConfig")
-
-            // Enable Firebase crashlytics on release mode
-//            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
-        }
-        debug {
-            debuggable true
-            minifyEnabled false
-            shrinkResources false
-
-            // Disable Firebase crashlytics on Debug mode
-//            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
-        }
-    }
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//    }
 
     // Specifies one flavor dimension.
     flavorDimensions "version"
@@ -98,12 +57,11 @@ android {
         buildConfig = true
         viewBinding = true
         dataBinding = true
+        compose true
     }
-
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
     }
-
     packaging {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
@@ -115,6 +73,7 @@ dependencies {
 
     // Enable Add Module/Libraries as dependency
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Android Dependencies
     def core = "1.10.1"
@@ -126,31 +85,22 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_runtime"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_runtime"
 
-    def app_compat = "1.6.1"
-    implementation "androidx.appcompat:appcompat:$app_compat"
-
-    def activity = "1.7.2"
-    implementation "androidx.activity:activity-ktx:$activity"
-
-    def fragment = "1.6.1"
-    implementation "androidx.fragment:fragment-ktx:$fragment"
-
-    def material = "1.9.0"
-    implementation "com.google.android.material:material:$material"
-
-    def constraint_layout = "2.1.4"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
-
-    def androidx_ui = "1.0.0-alpha07"
-    implementation "androidx.ui:ui-tooling:$androidx_ui"
-
     def navigation = "2.7.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
 
     // Compose Dependencies
-    // def activity_compose = "1.7.2"
-    // implementation "androidx.activity:activity-compose:$activity_compose"
+    def activity_compose = "1.7.2"
+    implementation "androidx.activity:activity-compose:$activity_compose"
+
+    def compose = "1.5.0"
+    implementation "androidx.compose.ui:ui:$compose"
+    implementation "androidx.compose.ui:ui-graphics:$compose"
+
+    def compose_material = "1.1.1"
+    implementation "androidx.compose.material3:material3:$compose_material"
+
+    implementation platform('androidx.compose:compose-bom:2023.03.00')
 
     // Hilt - dependency
     def hilt = "2.44"
@@ -163,21 +113,19 @@ dependencies {
 
     // Module Dependencies
     implementation project(':domain')
-    implementation project(':data')
     implementation project(':presentation')
-    implementation project(':movies')
-    implementation project(':series')
-    implementation project(':onboarding')
 
-    // Testing Dependencies
+    // Test Dependencies
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation platform('androidx.compose:compose-bom:2023.03.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+
+    // Debug Dependencies
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 }
+
 
 // Allow references to generated code
 kapt {

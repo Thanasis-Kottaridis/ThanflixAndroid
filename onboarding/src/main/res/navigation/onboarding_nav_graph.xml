@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboarding_nav_graph"
+    app:startDestination="@id/onboardingDetailsFragment">
+
+    <fragment
+        android:id="@+id/onboardingDetailsFragment"
+        android:name="gr.thanflix.onboarding.ui.onboarding.user.details.OnboardingDetailsFragment"
+        android:label="fragment_onboarding_details"
+        tools:layout="@layout/fragment_onboarding_details" />
+    <fragment
+        android:id="@+id/onboardingAddressFragment"
+        android:name="gr.thanflix.onboarding.ui.onboarding.user.address.OnboardingAddressFragment"
+        android:label="fragment_onboarding_address"
+        tools:layout="@layout/fragment_onboarding_address" />
+</navigation>
