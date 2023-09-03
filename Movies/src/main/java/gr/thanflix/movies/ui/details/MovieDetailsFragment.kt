@@ -1,6 +1,7 @@
 package gr.thanflix.movies.ui.details
 
 import android.system.Os.bind
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import gr.thanflix.movies.ui.landing.components.MoviesSectionAdapter
 import gr.thanflix.movies.ui.landing.interactors.MoviesLandingEvents
 import gr.thanflix.movies.util.Extras
 import gr.thanflix.presentation.base.ui.BaseFragment
+import gr.thanflix.presentation.components.ThanflixAppBarListener
 import gr.thanflix.presentation.utils.helpers.viewBinding
 import kotlinx.coroutines.launch
 
@@ -34,6 +36,14 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movies_details) {
     }
 
     override fun setupView() {
+        // set up appBar
+        binding.appBar.setAppBarListener(object: ThanflixAppBarListener {
+            override fun onBackButtonPressed(view: View): Boolean {
+                viewModel.onTriggerEvent(MovieDetailsEvents.GoBack)
+                return true
+            }
+        })
+
         // Set up recycler
         binding.overviewRecyclerView.layoutManager = LinearLayoutManager(
             requireContext(),
@@ -48,6 +58,9 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movies_details) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect {
                 it.details.apply {
+                    // SET UP HEADER
+                    binding.appBar.primaryTitle = title ?: "No title"
+
                     // SET UP MOVIE INFO
                     binding.movieTitleTextView.text = title
                     binding.releaseDateTextView.text = releaseDate

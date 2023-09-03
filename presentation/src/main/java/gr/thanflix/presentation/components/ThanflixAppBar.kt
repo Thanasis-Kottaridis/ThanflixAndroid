@@ -27,7 +27,7 @@ interface ThanflixAppBarListener {
     fun onMenuItem1Pressed(view: View) {}
 }
 
-class ThanflixAppBar(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {
+class ThanflixAppBar(context: Context, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
 
     /** Views */
     internal var toolBar: ConstraintLayout
@@ -44,9 +44,9 @@ class ThanflixAppBar(context: Context, attrs: AttributeSet) : ConstraintLayout(c
     var primaryTitle: String = "Default Val"
         set(value) {
             if (value.isEmpty())
-                titleTextView.visibility = GONE
+                titleTextView.visibility = View.GONE
             else {
-                titleTextView.visibility = VISIBLE
+                titleTextView.visibility = View.VISIBLE
                 titleTextView.text = value
             }
             field = value
@@ -62,7 +62,7 @@ class ThanflixAppBar(context: Context, attrs: AttributeSet) : ConstraintLayout(c
         }
 
     @ColorRes
-    var foregroundColor: Int = R.color.background_default_primary
+    var foregroundColor: Int = R.color.tint_primary
         set(value) {
             field = value
             updateColors()
@@ -82,7 +82,7 @@ class ThanflixAppBar(context: Context, attrs: AttributeSet) : ConstraintLayout(c
             .apply {
                 try {
                     // state attributes
-                    primaryTitle = getString(R.styleable.thanflix_styleable_appbar_Title) ?: ""
+                    primaryTitle = getString(R.styleable.thanflix_styleable_appbar_Title) ?: "FML"
                     // styling attributes
                     noNavAction = getBoolean(R.styleable.thanflix_styleable_appbar_NoNavAction, false)
                     foregroundColor = getResourceId(R.styleable.thanflix_styleable_appbar_ForegroundColor, R.color.tint_primary)
@@ -121,13 +121,6 @@ class ThanflixAppBar(context: Context, attrs: AttributeSet) : ConstraintLayout(c
         this.listener = listener
     }
 
-    var menuItem1IsVisible: Boolean
-        set(value) {
-            menuItem1ImgView.visibility = if (value) View.VISIBLE else View.GONE
-        }
-        get() {
-            return menuItem1ImgView.isVisible
-        }
 
     companion object {
         const val NO_RESOURCE_CONST = -1

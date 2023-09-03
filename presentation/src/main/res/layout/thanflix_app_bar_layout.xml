@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toStartOf="@+id/menuItem1"
         app:layout_constraintStart_toEndOf="@+id/backBtnImg"
         app:layout_constraintTop_toTopOf="@id/customToolBar"
-        tools:text="My Title " />
+        android:text="My Title " />
 
 
 
