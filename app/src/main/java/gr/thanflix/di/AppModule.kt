@@ -19,9 +19,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMainAppCoordinator(
-        coordinator: MainAppCoordinator
-    ): Coordinator = MainAppCoordinator()
+    fun provideMainAppCoordinator(): Coordinator = MainAppCoordinator()
 
     @Provides
     @Singleton

@@ -1,5 +1,6 @@
 package gr.thanflix.movies.coordinator
 
+import android.content.Context
 import android.os.Bundle
 import androidx.navigation.NavController
 import gr.thanflix.movies.R
@@ -13,7 +14,8 @@ sealed class MoviesAction : Action {
 }
 
 class MoviesCoordinator(
-    override var navController: NavController
+    override var context: Context?,
+    override var navController: NavController?,
 ) : Coordinator {
 
     override val graphId: Int = R.id.movies_nav_graph

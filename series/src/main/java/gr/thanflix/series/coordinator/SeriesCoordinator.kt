@@ -1,5 +1,6 @@
 package gr.thanflix.series.coordinator
 
+import android.content.Context
 import android.os.Bundle
 import androidx.navigation.NavController
 import gr.thanflix.presentation.base.navigation.Action
@@ -13,7 +14,8 @@ sealed class SeriesAction: Action {
 }
 
 class SeriesCoordinator (
-    override var navController: NavController
+    override var context: Context?,
+    override var navController: NavController?
 ): Coordinator {
     override val graphId: Int = R.id.series_nav_graph
 

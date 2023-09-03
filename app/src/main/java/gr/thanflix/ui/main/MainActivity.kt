@@ -3,13 +3,13 @@ package gr.thanflix.ui.main
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import gr.thanflix.R
 import gr.thanflix.databinding.ActivityMainBinding
 import gr.thanflix.presentation.base.navigation.Coordinator
+import gr.thanflix.presentation.base.ui.BaseActivity
 import gr.thanflix.presentation.utils.helpers.BottomNavBarHandler
 import gr.thanflix.presentation.utils.helpers.BottomNavBarItem
 import gr.thanflix.presentation.utils.helpers.viewBinding
@@ -17,7 +17,7 @@ import gr.thanflix.ui.main.interactors.MainEvents
 import javax.inject.Inject
 
 @AndroidEntryPoint // hilt needs at least one activity annotated with android entry point
-class MainActivity : AppCompatActivity(), BottomNavBarHandler {
+class MainActivity : BaseActivity(), BottomNavBarHandler {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
     private val viewModel: MainViewModel by viewModels()
@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity(), BottomNavBarHandler {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
+
+        // Initialize Coordinator
+        mainAppCoordinator.context = this
         mainAppCoordinator.navController = navController
         mainAppCoordinator.start()
         binding.bottomNavigation.setOnItemSelectedListener(this)
@@ -80,5 +83,10 @@ class MainActivity : AppCompatActivity(), BottomNavBarHandler {
             }
             else -> false
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mainAppCoordinator.stop()
     }
 }

@@ -19,4 +19,6 @@
     <color name="shadow_primary">#40000000</color>
     <color name="effect_blur">#61F0F0F0</color>
     <color name="effect_shadow">#80F0F0F0</color>
+
+    <color name="transparent">#0000</color>
 </resources>

@@ -5,27 +5,32 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import gr.thanflix.domain.di.IoDispatcher
+import gr.thanflix.domain.models.base.FeedbackMessage
+import gr.thanflix.domain.models.base.FeedbackMessageType
 import gr.thanflix.domain.models.base.Result
 import gr.thanflix.domain.repository.MoviesRepository
 import gr.thanflix.movies.coordinator.MoviesAction
 import gr.thanflix.movies.ui.landing.interactors.MoviesLandingEvents
 import gr.thanflix.movies.ui.landing.interactors.MoviesLandingState
 import gr.thanflix.presentation.base.navigation.BaseActionHandler
+import gr.thanflix.presentation.base.navigation.PresentFeedbackAction
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import gr.thanflix.presentation.base.viewModel.BaseViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class MoviesLandingViewModel @Inject constructor(
-    @ApplicationContext context: Context,
+    @ApplicationContext val context: Context,
     baseErrorDispatcher: BaseErrorDispatcher,
     override var actionHandler: BaseActionHandler?,
     private val moviesRepository: MoviesRepository,
@@ -53,7 +58,9 @@ class MoviesLandingViewModel @Inject constructor(
     }
 
     private fun fetchAllData() {
+
         viewModelScope.launch(dispatcher) {
+
             // Show loader
             mState.tryEmit(mState.value.copy(isLoading = true))
 
@@ -68,6 +75,14 @@ class MoviesLandingViewModel @Inject constructor(
 
             // Hide loader
             mState.tryEmit(mState.value.copy(isLoading = false))
+
+            withContext(Dispatchers.Main) {
+                actionHandler?.handleAction(PresentFeedbackAction(
+                    FeedbackMessage("test message", FeedbackMessageType.Success),
+                    context = context
+                ))
+
+            }
         }
     }
 
