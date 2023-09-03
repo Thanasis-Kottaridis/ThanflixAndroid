@@ -12,6 +12,7 @@ import gr.thanflix.domain.repository.SeriesRepository
 import gr.thanflix.presentation.base.navigation.BaseActionHandler
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import gr.thanflix.presentation.base.viewModel.BaseViewModel
+import gr.thanflix.presentation.utils.helpers.withDelay
 import gr.thanflix.series.coordinator.SeriesAction
 import gr.thanflix.series.ui.landing.interactors.SeriesLandingEvents
 import gr.thanflix.series.ui.landing.interactors.SeriesLandingState
@@ -57,9 +58,10 @@ class SeriesLandingViewModel @Inject constructor(
     }
 
     private fun fetchAllData() {
+        // Show loader
+        mState.tryEmit(mState.value.copy(isLoading = true))
+
         viewModelScope.launch(dispatcher) {
-            // Show loader
-            mState.tryEmit(mState.value.copy(isLoading = true))
 
             val requests = listOf(
                 async { fetchTodaySeries(page = 1) },

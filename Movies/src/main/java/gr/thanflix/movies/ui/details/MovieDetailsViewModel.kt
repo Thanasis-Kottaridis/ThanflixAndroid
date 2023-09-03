@@ -48,10 +48,10 @@ class MovieDetailsViewModel @Inject constructor(
     }
 
     private fun fetchMovieDetails() {
-        viewModelScope.launch(dispatcher) {
-            // Show loader
-            mState.tryEmit(mState.value.copy(isLoading = true))
+        // Show loader
+        mState.tryEmit(mState.value.copy(isLoading = true))
 
+        viewModelScope.launch(dispatcher) {
             when (val result = moviesRepository.getMovieDetails(movieId = mState.value.movieId)) {
                 is Result.Success -> {
                     mState.tryEmit(

@@ -13,6 +13,7 @@ import gr.thanflix.presentation.base.navigation.BaseActionHandler
 import gr.thanflix.presentation.base.navigation.PopAction
 import gr.thanflix.presentation.base.viewModel.BaseErrorDispatcher
 import gr.thanflix.presentation.base.viewModel.BaseViewModel
+import gr.thanflix.presentation.utils.helpers.withDelay
 import gr.thanflix.series.ui.details.interactors.SeriesDetailsEvents
 import gr.thanflix.series.ui.details.interactors.SeriesDetailsState
 import gr.thanflix.series.util.Extras
@@ -51,9 +52,9 @@ class SeriesDetailsViewModel @Inject constructor(
     }
 
     private fun fetchSeriesDetails() {
+        // Show loader
+        mState.tryEmit(mState.value.copy(isLoading = true))
         viewModelScope.launch(dispatcher) {
-            // Show loader
-            mState.tryEmit(mState.value.copy(isLoading = true))
 
             when (val result = seriesRepository.getSeriesDetails(seriesId = mState.value.seriesId)) {
                 is Result.Success -> {

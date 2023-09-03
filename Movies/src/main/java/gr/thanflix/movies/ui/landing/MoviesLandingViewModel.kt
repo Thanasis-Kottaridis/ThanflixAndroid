@@ -59,11 +59,10 @@ class MoviesLandingViewModel @Inject constructor(
 
     private fun fetchAllData() {
 
+        // Show loader
+        mState.tryEmit(mState.value.copy(isLoading = true))
+
         viewModelScope.launch(dispatcher) {
-
-            // Show loader
-            mState.tryEmit(mState.value.copy(isLoading = true))
-
             val requests = listOf(
                 async { fetchNowPlayingMovies(page = 1) },
                 async { fetchPopularMovies(page = 1) },

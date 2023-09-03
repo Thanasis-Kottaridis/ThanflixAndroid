@@ -1,5 +1,6 @@
 package gr.thanflix.presentation.base.ui
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -28,11 +29,14 @@ abstract class BaseActivity : AppCompatActivity() {
             LayoutParams.MATCH_PARENT, // Width
             LayoutParams.MATCH_PARENT  // Height
         )
-        container.setBackgroundColor(resources.getColor(R.color.effect_blur)) // Set background color
+        container.setBackgroundColor(resources.getColor(R.color.effect_shadow)) // Set background color
 
         // Create a ProgressBar
         progressBar = ProgressBar(this, null, android.R.attr.progressBarStyleLarge)
-
+        progressBar.indeterminateDrawable.setColorFilter(
+            resources.getColor(R.color.brand_primary),
+            PorterDuff.Mode.SRC_IN
+        )
         // Set ProgressBar attributes (optional)
         progressBar.isIndeterminate = true // You can change this as needed
 

@@ -8,6 +8,7 @@ import androidx.navigation.NavGraph
 import gr.thanflix.domain.models.base.FeedbackMessage
 import gr.thanflix.presentation.base.ui.BaseActivity
 import gr.thanflix.presentation.components.FeedbackMessageView
+import gr.thanflix.presentation.utils.helpers.withDelay
 
 interface Coordinator : BaseActionHandler {
 
@@ -68,11 +69,12 @@ interface Coordinator : BaseActionHandler {
                 action.destinationId,
                 action.inclusive
             )
-
             is PopToRootAction -> navController?.popBackStack(graphId, true)
             is ClearGraphAction -> navController?.popBackStack(action.graphId, true)
             is ShowLoaderAction -> (context as? BaseActivity)?.showLoader()
-            is HideLoaderAction -> (context as? BaseActivity)?.hideLoader()
+            is HideLoaderAction -> withDelay(500) {
+                (context as? BaseActivity)?.hideLoader()
+            }
             is PresentFeedbackAction -> {
                 FeedbackMessageView.build(
                     type = action.feedbackMessage.type,
