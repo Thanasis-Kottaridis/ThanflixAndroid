@@ -21,6 +21,7 @@ import gr.thanflix.series.coordinator.SeriesAction
 import gr.thanflix.series.coordinator.SeriesCoordinator
 import javax.inject.Inject
 
+class GoToAuthorization: Action
 class GoToMoviesTab : Action
 class GoToSeriesTab : Action
 
@@ -32,11 +33,18 @@ class MainAppCoordinator @Inject constructor() : Coordinator {
     override var navController: NavController? = null
 
     override fun start() {
-        handleAction(GoToMoviesTab())
+        handleAction(GoToAuthorization())
     }
 
     override fun handleAction(action: Action) {
         when (action) {
+            is GoToAuthorization -> {
+                // reset back stack
+                handleAction(PopToRootAction)
+                // select tab
+                val coordinator = AuthorizationCoordinator(context, navController)
+                coordinator.start()
+            }
             is GoToMoviesTab, GoToMainApp -> {
                 // reset back stack
                 handleAction(PopToRootAction)

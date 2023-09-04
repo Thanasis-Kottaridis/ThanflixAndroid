@@ -13,4 +13,5 @@
         android:name="gr.thanflix.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
+    <include app:graph="@navigation/authorization_nav_graph" />
 </navigation>

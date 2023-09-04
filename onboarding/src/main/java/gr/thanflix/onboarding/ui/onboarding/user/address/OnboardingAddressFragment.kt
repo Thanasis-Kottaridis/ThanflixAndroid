@@ -5,10 +5,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.fragment.app.viewModels
 import androidx.navigation.navGraphViewModels
+import dagger.hilt.android.AndroidEntryPoint
 import gr.thanflix.onboarding.R
 import gr.thanflix.onboarding.ui.onboarding.user.mediators.OnboardingMediator
 import gr.thanflix.presentation.base.ui.compose.ComposeBaseFragment
 
+@AndroidEntryPoint
 class OnboardingAddressFragment : ComposeBaseFragment(R.layout.fragment_onboarding_address) {
 
     private val mediator: OnboardingMediator by navGraphViewModels(R.id.onboarding_nav_graph) { defaultViewModelProviderFactory }
@@ -33,5 +35,4 @@ class OnboardingAddressFragment : ComposeBaseFragment(R.layout.fragment_onboardi
     override fun ComposableContent() {
         val state by viewModel.state.collectAsState()
     }
-
 }

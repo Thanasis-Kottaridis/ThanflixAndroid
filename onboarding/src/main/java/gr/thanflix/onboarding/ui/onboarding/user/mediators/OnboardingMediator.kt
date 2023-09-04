@@ -9,7 +9,7 @@ import gr.thanflix.domain.models.base.BaseException
 import javax.inject.Inject
 import gr.thanflix.domain.models.base.Result
 
-//@HiltViewModel
+@HiltViewModel
 class OnboardingMediator @Inject constructor(
     @ApplicationContext context: Context
 ): AndroidViewModel(context.applicationContext as Application) {

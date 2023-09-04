@@ -41,4 +41,23 @@
     <string name="OVERVIEW_SYNOPSIS">SYNOPSIS</string>
     <string name="OVERVIEW_SESONS_AND_EPISODES">SEASONS AND EPISODES</string>
 
+    <!-- Authorization -->
+    <string name="AUTHORIZATION_TITLE">Authorization</string>
+    <string name="LOGIN_CTA_TITLE">Login</string>
+    <string name="REGISTER_CTA_TITLE">Register</string>
+
+    <!-- Onboarding -->
+    <string name="CONTINUE_CTA_TITLE">Continue</string>
+
+    <string name="ONBOARDING_DETAILS_TITLE">Onboarding Details</string>
+    <string name="NAME_FIELD_PLACEHOLDER">Name</string>
+    <string name="SURNAME_FIELD_PLACEHOLDER">Surname</string>
+    <string name="PHONENUMBER_FIELD_PLACEHOLDER">Phone Number</string>
+
+
+    <string name="ONBOARDING_ADDRESS_TITLE">Onboarding Address</string>
+    <string name="STREET_NAME_FIELD_PLACEHOLDER">Street Name</string>
+    <string name="STREET_NUMBER_FIELD_PLACEHOLDER">Street Number</string>
+    <string name="POSTAL_CODE_FIELD_PLACEHOLDER">Postal Code</string>
+
 </resources>
