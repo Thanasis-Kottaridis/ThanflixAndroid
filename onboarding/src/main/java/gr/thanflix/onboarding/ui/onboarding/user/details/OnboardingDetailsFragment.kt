@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.navGraphViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import gr.thanflix.onboarding.R
+import gr.thanflix.onboarding.ui.onboarding.user.details.components.OnboardingDetailsScreen
 import gr.thanflix.onboarding.ui.onboarding.user.mediators.OnboardingMediator
 import gr.thanflix.presentation.base.ui.compose.ComposeBaseFragment
 
@@ -35,5 +36,9 @@ class OnboardingDetailsFragment: ComposeBaseFragment(R.layout.fragment_onboardin
     @Composable
     override fun ComposableContent() {
         val state by viewModel.state.collectAsState()
+        OnboardingDetailsScreen(
+            state = state,
+            onTriggerEvent = viewModel::onTriggerEvent
+        )
     }
 }

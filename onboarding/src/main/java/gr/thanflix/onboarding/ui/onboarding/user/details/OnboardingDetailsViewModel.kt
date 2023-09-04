@@ -6,6 +6,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import gr.thanflix.domain.di.IoDispatcher
 import gr.thanflix.domain.models.base.BaseException
 import gr.thanflix.domain.models.base.Result
+import gr.thanflix.onboarding.coordinator.OnboardingAction
 import gr.thanflix.onboarding.ui.onboarding.user.details.interactors.OnboardingDetailsEvents
 import gr.thanflix.onboarding.ui.onboarding.user.details.interactors.OnboardingDetailsState
 import gr.thanflix.onboarding.ui.onboarding.user.mediators.OnboardingMediator
@@ -44,13 +45,15 @@ class OnboardingDetailsViewModel @Inject constructor(
     override fun onTriggerEvent(event: OnboardingDetailsEvents) {
         when (event) {
             is OnboardingDetailsEvents.NextStep -> setUserDetails(event.userName, event.userSurname, event.phoneNumber)
+            else -> {}
         }
     }
 
     private fun setUserDetails(userName: String, userSurname: String,  phoneNumber: String) {
         when (val result = mediator?.setUserDetails(userName, userSurname, phoneNumber) ?: return) {
-            is Result.Success -> {}
+            is Result.Success -> actionHandler?.handleAction(OnboardingAction.GoToUserAddress)
             is Result.Failure -> handleErrors(result.errorBody)
+            else -> {}
         }
     }
 }
